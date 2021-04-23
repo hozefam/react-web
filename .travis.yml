@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true hozefam/react-web npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'react-web'
+  env: 'Reactweb-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-534906124127'
+  bucket_path: 'react-web'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
